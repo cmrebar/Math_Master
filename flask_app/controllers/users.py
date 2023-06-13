@@ -62,6 +62,9 @@ def dashboard():
 def view_problem(id):
     problem_id = int(id)
     problem, solution = mg.genById(problem_id)
+    _, wrong1 = mg.genById(problem_id)
+    _, wrong2 = mg.genById(problem_id)
+    _, wrong3 = mg.genById(problem_id)
     user_data = { 'id' : session['user_id']}
     print(problem, solution)
-    return render_template("problems.html", problem=problem, solution=solution, user = User.get_by_id(user_data), users = User.getAll())
+    return render_template("problems.html", problem=problem, solution=solution, wrong1=wrong1, wrong2=wrong2, wrong3=wrong3, user = User.get_by_id(user_data), users = User.getAll())

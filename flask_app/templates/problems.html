@@ -5,12 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <link rel="stylesheet" href="static/css/problems.css">
 </head>
 <body>
+    <div class="container">
+        <div class="navbar">
+            <div class="user_info">
+                <h4>
+                    Hello User!
+                </h4>
+                <h4>
+                    <a href="#">Redeem Rewards</a>
+                </h4>
+                <h4>
+                    Progress to Next Milestone: 44/50
+                </h4>
+            </div>
+            <div class="title">
+                <h1>Math Master</h1>
+            </div>
+            <div class="logout">
+                <a href="/logout" class="logout">Logout</a>
+            </div>
+        </div>
+        <div class="body">
+            <div id="body">
+                
+            </div>
+        </div>
+        <div class="leaderboard">
+            
+        </div>
+    </div>
     <p>{{ problem | safe}}</p>
     <p>{{ solution | safe }}</p>
     {{users[4].first_name}}
     {{user.first_name}}
+    {{wrong1 | safe}}
+    {{wrong2 | safe}}
+    {{wrong3 | safe}}
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] }

@@ -76,6 +76,12 @@ def logout():
     session.clear()
     return redirect('/')
 
+@app.route('/delete')
+def delete():
+    data = { 'id' : session['user_id'] }
+    User.delete(data)
+    return redirect('/')
+
 @app.route('/dashboard')
 def dashboard():
     if not 'user_id' in session:

@@ -43,6 +43,11 @@ class User:
         return connectToMySQL('math_master').query_db( query, data)
     
     @classmethod
+    def delete(cls,data):
+        query = 'DELETE FROM users WHERE id = %(id)s;'
+        return connectToMySQL('math_master').query_db(query,data)
+    
+    @classmethod
     def get_by_email(cls,data):
         query = 'SELECT * FROM users WHERE email = %(email)s;'
         result = connectToMySQL('math_master').query_db(query,data)

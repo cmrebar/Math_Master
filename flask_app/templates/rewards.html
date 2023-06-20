@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/rewards.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="user_info">
+                <h4>
+                    Hello {{ user.first_name }}!
+                </h4>
+                <h4>
+                    Title Swaps Available: {{user.milestones}}
+                </h4>
+                <h4>
+                    Progress to Next Milestone: {{ user.tracked_points }}/{{ milestone }}
+                </h4>
+                
+            </div>
+            <div class="title_of_app">
+                <h1 class="shimmer-text">Math Master</h1>
+            </div>
+            <div class="logout">
+                <a href="/dashboard" id="logout">Dashboard</a>
+                <a href="/logout" id="logout">Logout</a>
+            </div>
+        </div>
+        <div class="body">
+            <div id="body">
+                <h2 class="reward">Pick Your Title!</h2>
+                {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="reward">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                <div class="body_section">
+                    <div class="rewards">
+                        <h2>1st Grade</h2>
+                        <h2>2nd Grade</h2>
+                        <h2>3rd Grade</h2>
+                        <h2>4th Grade</h2>
+                    </div>
+                    <div class="titles">
+                        <div class="titles_section">
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Addition Amateur') }}">Addition Amateur</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Subtraction Savant') }}">Subtraction Savant</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Counting Champion') }}">Counting Champion</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Shape Superstar') }}">Shape Superstar</a>
+                        </div>
+                        <div class="titles_section">
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Addition Ace') }}">Addition Ace</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Number Navigator') }}">Number Navigator</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Time Teller') }}">Time Teller</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Math Detective') }}">Math Detective</a>
+                        </div>
+                        <div class="titles_section">
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Multiplication Magician') }}">Multiplication Magician</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Division Dynamo') }}">Division Dynamo</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Perimeter Prodigy') }}">Perimeter Prodigy</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Math Explorer') }}">Math Explorer</a>
+                        </div>
+                        <div class="titles_section">
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Prime Powerhouse') }}">Prime Powerhouse</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Composite Commander') }}">Composite Commander</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Factor Finder') }}">Factor Finder</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Math Captain') }}">Math Captain</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="body_section">
+                    <div class="rewards">
+                        <h2>5th Grade</h2>
+                        <h2>6th Grade</h2>
+                        <h2>7th Grade</h2>
+                        <h2>8th Grade</h2>
+                    </div>
+                    <div class="titles">
+                        <div class="titles_section">
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Problem-Solving Enthusiast') }}">Problem-Solving Enthusiast</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Decimal Dazzler') }}">Decimal Dazzler</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Math Adventurer') }}">Math Adventurer</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Fraction Master') }}">Fraction Master</a>
+                        </div>
+                        <div class="titles_section">
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Percentage Prowler') }}">Percentage Prowler</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Problem-Solving Pro') }}">Problem-Solving Pro</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Surface Area Scholar') }}">Surface Area Scholar</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Math Hero') }}">Math Hero</a>
+                        </div>
+                        <div class="titles_section">
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Surface Area Conqueror') }}">Surface Area Conqueror</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Volume Specialist') }}">Volume Specialist</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Addition Amateur') }}">Addition Amateur</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Math Champion') }}">Math Champion</a>
+                        </div>
+                        <div class="titles_section">
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Volume Virtuoso') }}">Volume Virtuoso</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Angle Guru') }}">Angle Guru</a>
+                            <a class="title" href="{{ url_for('claim_reward', title = 'Exponent Trailblazer') }}">Exponent Trailblazer</a>
+                            {% if user.tracked_points >= 500 %}
+                            <a class="title" id="shimmer-text" href="{{ url_for('claim_reward', title = 'Math Master') }}">Math Master</a>
+                            {% else %}
+                            <a class="title" href="#" style="pointer-events:none; cursor:default;"></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="leaderboard">
+            <table>
+                    <tr>
+                        <td>Name</td>
+                        <td>Points</td>
+                        <td>Title</td>
+                    </tr>
+                {% for user in users %}
+                    <tr>
+                        {% if user.tracked_points >= 500 %}
+                        <td class="shimmer-text">{{ user.first_name }} {{ user.last_name }}</td>
+                        <td class="shimmer-text">{{ user.tracked_points }}</td>
+                        <td class="shimmer-text">{{ user.title }}</td>
+                        {% else %}
+                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                        <td>{{ user.tracked_points }}</td>
+                        <td>{{ user.title }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

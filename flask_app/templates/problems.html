@@ -4,15 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='problems.css') }}">
-    
+    <link rel="stylesheet" href="/static/css/problems.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 </head>
 <body>
     <div class="container">
-        
-    </div>
-    
-    
+        <div class="navbar">
+            <div class="user_info">
+                <h4>
+                    Hello {{ user.first_name }}!
+                </h4>
+                <h4>
+                    <a href="/rewards">Redeem Points</a>
+                </h4>
+                <h4>
+                    Title Swaps Available: {{user.milestones}}
+                </h4>
+                <h4>
+                    Progress to Next Milestone: {{ user.tracked_points }}/{{ milestone }}
+                </h4>
+            </div>
+            <div class="title_of_app">
+                <h1 class="shimmer-text">Math Master</h1>
+            </div>
+            <div class="logout">
+                <a href="/dashboard" id="logout">Dashboard</a>
+                <a href="/logout" id="logout">Logout</a>
+            </div>
+        </div>
+        <div class="body">
+            <div class="body_section" id="shimmer-effect">
 
+            </div>
+            <div class="body_section">
+                <h2 class="body_title">Solve the Problem!</h2>
+                <form action="/problems/check" method="post">
+                    <div class="problem">
+                        <h2 id="problem">{{ problem | safe }}</h2>
+                    </div>
+                    <div class="options">
+                        {% for option in options %}
+                            <div class="option">
+                                <input type="radio" name="user_solution" value="{{ option }}">
+                                <label>{{ option | safe }}</label>
+                            </div>
+                        {% endfor %}
+                        <input type="hidden" name="solution" value="{{ solution }}">
+                    </div>
+                    <div class="submit">
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                
+                                {% for message in messages %}
+                                    <p> {{ message }}</p>
+                                {% endfor %}
+                                
+                            {% endif %}
+                            {% endwith %}
+                        <input id="submit" type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+            <div class="body_section" id="shimmer-effect">
+                
+            </div>
+        </div>
+    </div>
+
+    <script type="text/x-mathjax-config" async>
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+    });
+    </script>
 </body>
 </html>

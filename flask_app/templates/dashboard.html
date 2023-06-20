@@ -11,20 +11,23 @@
         <div class="navbar">
             <div class="user_info">
                 <h4>
-                    Hello User!
+                    Hello {{ user.first_name }}!
                 </h4>
                 <h4>
-                    <a href="#">Redeem Rewards</a>
+                    <a href="/rewards">Redeem Points</a>
                 </h4>
                 <h4>
-                    Progress to Next Milestone: 44/50
+                    Title Swaps Available: {{user.milestones}}
+                </h4>
+                <h4>
+                    Progress to Next Milestone: {{ user.tracked_points }}/{{ milestone }}
                 </h4>
             </div>
-            <div class="title">
-                <h1>Math Master</h1>
+            <div class="title_of_app">
+                <h1 class="shimmer-text">Math Master</h1>
             </div>
             <div class="logout">
-                <a href="/logout" class="logout">Logout</a>
+                <a href="/logout" id="logout">Logout</a>
             </div>
         </div>
         <div class="body">
@@ -51,7 +54,7 @@
                             <a class="topic" href="#" style="cursor:default"></a>
                         </div>
                         <div class="topics_section">
-                            <a class="topic" href="{{ url_for('view_problem', id = 96) }}">Perimeter</a>
+                            <a class="topic" href="{{ url_for('view_problem', id = 96) }}">Perimeters</a>
                             <a class="topic" href="{{ url_for('view_problem', id = 2) }}">Multiplication</a>
                             <a class="topic" href="{{ url_for('view_problem', id = 3) }}">Division</a>
                             <a class="topic" href="#" style="cursor:default"></a>
@@ -75,19 +78,19 @@
                         <div class="topics_section">
                             <a class="topic" href="{{ url_for('view_problem', id = 28) }}">Multiply Fractions</a>
                             <a class="topic" href="{{ url_for('view_problem', id = 16) }}">Divide Fractions</a>
-                            <a class="topic" href="#" style="cursor:default"></a>
-                            <a class="topic" href="#" style="cursor:default"></a>
+                            <a class="topic" href="{{ url_for('view_problem', id = 44) }}">Compare Fractions</a>
+                            <a class="topic" href="{{ url_for('view_problem', id = 13) }}">Fractions to Decimals</a>
                         </div>
                         <div class="topics_section">
                             <a class="topic" href="{{ url_for('view_problem', id = 80) }}">Percents</a>
-                            <a class="topic" href="{{ url_for('view_problem', id = 123) }}">Surface Area of Pyramid</a>
+                            <a class="topic" href="{{ url_for('view_problem', id = 123) }}">Surface Area of Pyramids</a>
                             <a class="topic" href="{{ url_for('view_problem', id = 13) }}">Fractions to Decimals</a>
                             <a class="topic" href="#" style="cursor:default"></a>
                         </div>
                         <div class="topics_section">
-                            <a class="topic" href="{{ url_for('view_problem', id = 34) }}">Surface Area of Cylinder</a>
-                            <a class="topic" href="{{ url_for('view_problem', id = 122) }}">Volume of Pyramid</a>
-                            <a class="topic" href="{{ url_for('view_problem', id = 13) }}">Fraction to Decimal</a>
+                            <a class="topic" href="{{ url_for('view_problem', id = 34) }}">Surface Area of Cylinders</a>
+                            <a class="topic" href="{{ url_for('view_problem', id = 122) }}">Volume of Pyramids</a>
+                            <a class="topic" href="{{ url_for('view_problem', id = 13) }}">Fractions to Decimals</a>
                             <a class="topic" href="#" style="cursor:default"></a>
                         </div>
                         <div class="topics_section">
@@ -101,6 +104,28 @@
             </div>
         </div>
         <div class="leaderboard">
+            
+            <table>
+                    <tr>
+                        <td>Name</td>
+                        <td>Points</td>
+                        <td>Title</td>
+                    </tr>
+                {% for user in users %}
+                    <tr>
+                        {% if user.tracked_points >= 500 %}
+                        <td class="shimmer-text">{{ user.first_name }} {{ user.last_name }}</td>
+                        <td class="shimmer-text">{{ user.tracked_points }}</td>
+                        <td class="shimmer-text">{{ user.title }}</td>
+                        {% else %}
+                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                        <td>{{ user.tracked_points }}</td>
+                        <td>{{ user.title }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+                    
             
         </div>
     </div>

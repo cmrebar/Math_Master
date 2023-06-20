@@ -13,7 +13,10 @@ class User:
         self.last_name = db_data["last_name"]
         self.email = db_data["email"]
         self.password = db_data["password"]
-        self.points = db_data["points"]
+        self.tracked_points = db_data["tracked_points"]
+        self.hidden_points = db_data["hidden_points"]
+        self.title = db_data["title"]
+        self.milestones = db_data["milestones"]
         self.created_at = db_data["created_at"]
         self.updated_at = db_data["updated_at"]
     
@@ -30,12 +33,13 @@ class User:
             flash("Invalid email address!")
             is_valid = False
         if not user["password"] == user["confirm_password"]:
+            flash("Passwords do not match")
             is_valid = False
         return is_valid
     
     @classmethod
     def save(cls, data):
-        query =  "INSERT INTO users (first_name, last_name, email, password, points, created_at, updated_at) VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(password)s, %(points)s, NOW(), NOW() );"
+        query =  "INSERT INTO users (first_name, last_name, email, password, tracked_points, created_at, updated_at) VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(password)s, %(tracked_points)s, NOW(), NOW() );"
         return connectToMySQL('math_master').query_db( query, data)
     
     @classmethod
@@ -53,6 +57,7 @@ class User:
         result = connectToMySQL('math_master').query_db(query,data)
         
         return cls(result[0])
+    
     @classmethod
     def getAll(cls):   
         query = 'SELECT * FROM users;'
@@ -61,5 +66,16 @@ class User:
         
         for user in results:
             users.append( cls(user) )
-        return users
+        
+        sorted_users = sorted(users, key=lambda x: x.tracked_points, reverse=True)
+        return sorted_users
     
+    @classmethod
+    def update_points(cls,data):
+        query = 'UPDATE users SET tracked_points = %(tracked_points)s, milestones = %(milestones)s, hidden_points = %(hidden_points)s WHERE id = %(id)s;'
+        return connectToMySQL('math_master').query_db(query,data)
+    
+    @classmethod
+    def update_title(cls,data):
+        query = 'UPDATE users SET title = %(title)s, milestones = %(milestones)s, hidden_points = %(hidden_points)s  WHERE id = %(id)s;'
+        return connectToMySQL('math_master').query_db(query,data)

@@ -6,8 +6,7 @@ To run the Math Master app locally, follow these steps:
 
 Clone the repository: git clone https://github.com/cmrebar/solo_project
 Navigate to the project directory: cd math-master
-Install the dependencies: pip install [package](Check requirements.txt for dependencies)
-Set up the database: 
+Install the dependencies: pip install [package](Check requirements.txt for dependencies) 
 ## Database Setup
 
 1. Install MySQL: If you don't have MySQL installed, download and install it from the official MySQL website (https://dev.mysql.com/downloads/).

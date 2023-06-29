@@ -113,30 +113,10 @@ Math Master is an open-source project, and contributions are welcome! If you wou
 
 Please make sure to follow the code style and conventions used in the project.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-If you have any questions, suggestions, or feedback regarding Math Master, please feel free to reach out to Caleb Rebar at [contact-email].
-
-Thank you for using Math Master and happy problem-solving!
-Contributing
-Math Master is an open-source project, and contributions are welcome! If you would like to contribute to the project, please follow these steps:
-
-Fork the repository.
-Create a new branch: git checkout -b my-new-feature
-Make your changes and test thoroughly.
-Commit your changes: git commit -am 'Add some feature'
-Push the branch to your forked repository: git push origin my-new-feature
-Submit a pull request detailing your changes.
-Please make sure to follow the code style and conventions used in the project.
-
 License
 This project is licensed under the MIT License.
 
 Contact
-If you have any questions, suggestions, or feedback regarding Math Master, please feel free to reach out to Caleb Rebar at [contact-email].
+If you have any questions, suggestions, or feedback regarding Math Master, please feel free to reach out to Caleb Rebar at cmrebar1715@gmail.com.
 
 Thank you for using Math Master and happy problem-solving!
